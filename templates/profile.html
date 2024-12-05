@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athlete Profile</title>
+</head>
+<body>
+    <h1>Athlete Profile: {{ athlete['fullName'] }}</h1>
+
+    <!-- Athlete Basic Information -->
+    <h2>Basic Information</h2>
+    <p><strong>Full Name:</strong> {{ athlete['fullName'] }}</p>
+    <p><strong>Date of Birth:</strong> {{ athlete['dateOfBirth'] }}</p>
+    <p><strong>Nationality:</strong> {{ athlete['nationality'] }}</p>
+    <p><strong>Sport:</strong> {{ athlete['sport'] }}</p>
+    <p><strong>Discipline:</strong> {{ athlete['discipline'] }}</p>
+    <p><strong>Team:</strong> {{ athlete['team'] }}</p>
+    <p><strong>Position:</strong> {{ athlete['position'] }}</p>
+
+    <!-- Athlete Events -->
+    <h2>Notable Events</h2>
+    <ul>
+        {% for event in athlete['events'] %}
+            <li>
+                <strong>{{ event['eventName'] }}</strong><br>
+                <strong>Date:</strong> {{ event['date'] }}<br>
+                <strong>Location:</strong> {{ event['location'] }}<br>
+                <strong>Level:</strong> {{ event['level'] }}<br>
+                <strong>Result:</strong> {{ event['result'] }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Athlete Career Statistics -->
+    <h2>Career Statistics</h2>
+    <p><strong>Wins:</strong> {{ athlete['statistics']['wins'] }}</p>
+    <p><strong>Personal Bests:</strong> 
+        <ul>
+            {% for best in athlete['statistics']['personalBests'] %}
+                <li>{{ best }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p><strong>World Ranking:</strong> {{ athlete['statistics']['worldRanking'] }}</p>
+
+    <!-- Athlete Achievements -->
+    <h2>Achievements</h2>
+    <ul>
+        {% for achievement in athlete['achievements'] %}
+            <li>{{ achievement }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Athlete Health and Fitness -->
+    <h2>Health and Fitness</h2>
+    <p><strong>Injury History:</strong>
+        <ul>
+            {% for injury in athlete['healthAndFitness']['injuryHistory'] %}
+                <li>{{ injury }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p><strong>Fitness Data:</strong> 
+        <ul>
+            {% for key, value in athlete['healthAndFitness']['fitnessData'].items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <!-- Athlete Performance Analytics -->
+    <h2>Performance Analytics</h2>
+    <p><strong>Strengths:</strong>
+        <ul>
+            {% for strength in athlete['performanceAnalytics']['strengths'] %}
+                <li>{{ strength }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p><strong>Weaknesses:</strong>
+        <ul>
+            {% for weakness in athlete['performanceAnalytics']['weaknesses'] %}
+                <li>{{ weakness }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <!-- Athlete Media -->
+    <h2>Media</h2>
+    <ul>
+        {% for media_item in athlete['media'] %}
+            <li>
+                <strong>{{ media_item['mediaType'] }}:</strong> 
+                <a href="{{ media_item['mediaLink'] }}" target="_blank">{{ media_item['mediaLink'] }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Athlete Quotes -->
+    <h2>Quotes</h2>
+    <ul>
+        {% for quote in athlete['quotes'] %}
+            <li>"{{ quote }}"</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Athlete Upcoming Goals -->
+    <h2>Upcoming Goals</h2>
+    <ul>
+        {% for goal in athlete['upcomingGoals'] %}
+            <li><strong>Event:</strong> {{ goal['event'] }} <br> <strong>Goal:</strong> {{ goal['goal'] }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Athlete Medal Tally -->
+    <h2>Medal Tally</h2>
+    <h3>National</h3>
+    <ul>
+        <li><strong>Gold:</strong> {{ athlete['medalTally']['national']['gold'] }}</li>
+        <li><strong>Silver:</strong> {{ athlete['medalTally']['national']['silver'] }}</li>
+        <li><strong>Bronze:</strong> {{ athlete['medalTally']['national']['bronze'] }}</li>
+        <li><strong>Total:</strong> {{ athlete['medalTally']['national']['total'] }}</li>
+        <h4>Associated Events:</h4>
+        <ul>
+            {% for event in athlete['medalTally']['national']['events'] %}
+                <li>
+                    <strong>Event Name:</strong> {{ event['eventName'] }}<br>
+                    <strong>Date:</strong> {{ event['date'] }}<br>
+                    <strong>Location:</strong> {{ event['location'] }}<br>
+                    <strong>Level:</strong> {{ event['level'] }}<br>
+                    <strong>Result:</strong> {{ event['result'] }}
+                </li>
+            {% endfor %}
+        </ul>
+    </ul>
+
+    <h3>International</h3>
+    <ul>
+        <li><strong>Gold:</strong> {{ athlete['medalTally']['international']['gold'] }}</li>
+        <li><strong>Silver:</strong> {{ athlete['medalTally']['international']['silver'] }}</li>
+        <li><strong>Bronze:</strong> {{ athlete['medalTally']['international']['bronze'] }}</li>
+        <li><strong>Total:</strong> {{ athlete['medalTally']['international']['total'] }}</li>
+        <h4>Associated Events:</h4>
+        <ul>
+            {% for event in athlete['medalTally']['international']['events'] %}
+                <li>
+                    <strong>Event Name:</strong> {{ event['eventName'] }}<br>
+                    <strong>Date:</strong> {{ event['date'] }}<br>
+                    <strong>Location:</strong> {{ event['location'] }}<br>
+                    <strong>Level:</strong> {{ event['level'] }}<br>
+                    <strong>Result:</strong> {{ event['result'] }}
+                </li>
+            {% endfor %}
+        </ul>
+    </ul>
+</body>
+</html>
